@@ -2,10 +2,10 @@
 # tasks file for tyk
 
 - name: Install Mongo and Redis
-  shell: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+  shell: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
 
 - name: downloads-distro
-  shell: echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
+  shell: echo "deb http://repo.mongodb.org/apt/debian jessie/mongodb-org/3.4 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
 
 - name: Update apt
   apt:  update_cache=yes
@@ -19,19 +19,19 @@
     - curl
 
 - name: Add Tyk Gateway repository
-  shell: curl -s https://packagecloud.io/install/repositories/tyk/tyk-gateway/script.deb.sh | sudo bash
+  shell: curl -s https://packagecloud.io/install/repositories/tyk/tyk-gateway/script.deb.sh | sudo -E bash
 
 - name: Install Tyk Gateway
   apt: name=tyk-gateway state=present update_cache=yes cache_valid_time=3600
 
 - name: Add Tyk Dashboard repository
-  shell: curl -s https://packagecloud.io/install/repositories/tyk/tyk-dashboard/script.deb.sh | sudo bash
+  shell: curl -s https://packagecloud.io/install/repositories/tyk/tyk-dashboard/script.deb.sh | sudo -E bash
 
 - name: Install Tyk Dashboard
   apt: name=tyk-dashboard state=present update_cache=yes cache_valid_time=3600
 
 - name: Add Tyk Pump repository
-  shell: curl -s https://packagecloud.io/install/repositories/tyk/tyk-pump/script.deb.sh | sudo bash
+  shell: curl -s https://packagecloud.io/install/repositories/tyk/tyk-pump/script.deb.sh | sudo -E bash
 
 - name: Install Tyk Pump
   apt: name=tyk-pump state=present update_cache=yes cache_valid_time=3600

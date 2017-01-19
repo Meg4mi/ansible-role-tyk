@@ -5,4 +5,7 @@
   remote_user: root
   become: yes
   roles:
-    - Sunnepah.tyk
+    - tyk
+  environment:
+    http_proxy: http://<user>:<pass>@proxy.example.com:8080
+    https_proxy: http://<user>:<pass>@proxy.example.com:8080

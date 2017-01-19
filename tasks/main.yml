@@ -50,6 +50,9 @@
 
 - name: Add Tyk Domain to Hosts File
   shell: echo '127.0.0.1 {{ tyk_dashboard_domain }}' | sudo tee --append /etc/hosts
+  
+- name: Start Mongodb
+  service: name=mongod state=started enabled=yes
 
 - name: Set up gateway parameters
   template: src=tyk.conf dest=/opt/tyk-gateway/tyk.conf mode=0644
